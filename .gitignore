@@ -1,0 +1,53 @@
+# Entornos virtuales
+.venv/
+venv/
+env/
+ENV/
+
+# Cachés y archivos compilados de Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Distribución y empaquetado
+build/
+dist/
+*.egg-info/
+*.egg
+pip-wheel-metadata/
+
+# Herramientas de pruebas y cobertura
+.pytest_cache/
+.coverage
+.coverage.*
+htmlcov/
+.tox/
+.nox/
+
+# Herramientas de análisis y documentación
+.mypy_cache/
+.pyre/
+.ruff_cache/
+.hypothesis/
+docs/_build/
+
+# Variables de entorno y secretos locales
+.env
+.env.*
+!.env.example
+
+# Configuración de editores e IDEs
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Sistemas operativos
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Archivos temporales
+*.log
+*.tmp
+*.bak
