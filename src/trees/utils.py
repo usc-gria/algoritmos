@@ -4,11 +4,8 @@ from __future__ import annotations
 
 import json
 from pathlib import Path
-import typing
 
 from trees import Node
-
-T = typing.TypeVar("T")
 
 
 def parse_json_to_node(data: str) -> Node:
@@ -31,17 +28,14 @@ def parse_json_to_node(data: str) -> Node:
     return json.loads(data, object_hook=lambda d: Node(**d))
 
 
-def load_json_file(filepath: str | Path) -> list[Node] | Node:
-    """Lee y deserializa un archivo JSON en una lista de objetos `Node` o una sola instancia.
-
-    Soporta tanto archivos que contienen un array JSON de nodos `[{...}, {...}]`
-    como archivos con un único objeto `{...}`.
+def load_json_file(filepath: str | Path) -> list[Node]:
+    """Lee y deserializa un archivo JSON en una lista de objetos `Node`.
 
     Args:
         filepath (str | Path): Ruta al archivo JSON en el sistema.
 
     Returns:
-        list[Node] | Node: Instancia o lista de instancias de `Node`.
+        list[Node]: Lista de instancias de `Node`.
 
     Raises:
         FileNotFoundError: Si el archivo no existe en la ruta dada.

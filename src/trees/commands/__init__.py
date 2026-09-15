@@ -5,7 +5,6 @@ El intérprete mapea la primera palabra de cada línea leída en un script (en m
 con la función correspondiente aquí exportada.
 
 Comandos disponibles en la práctica:
-    - CREATE <valor>: Inicializa un nuevo árbol con la raíz indicada.
     - LOAD <ruta_fichero>: Carga datos en formato JSON en el árbol.
     - PRINT: Imprime la estructura del árbol.
     - INSERT <valor>: Inserta un valor en el árbol balanceado.
@@ -14,7 +13,6 @@ Comandos disponibles en la práctica:
     - UPDATE <key> <valor>: Actualiza el nodo correspondiente a key con el nuevo valor.
 """
 
-from .create import create
 from .find import find
 from .insert import insert
 from .load import load
@@ -23,7 +21,6 @@ from .remove import remove
 from .update import update
 
 __all__ = [
-    "create",
     "find",
     "insert",
     "load",

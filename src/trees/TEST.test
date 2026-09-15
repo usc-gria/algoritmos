@@ -1,0 +1,5 @@
+LOAD data.json
+FIND "Hubble"
+PRINT
+REMOVE "Hubble"
+PRINT

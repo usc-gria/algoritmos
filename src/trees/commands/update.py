@@ -2,16 +2,23 @@
 
 from __future__ import annotations
 
-import typing
-
 from trees import AVLTree
 
-V = typing.TypeVar("V")
 
-
-def update(tree: AVLTree[V], key: str, value: str) -> AVLTree[V]:
+def update[T](tree: AVLTree[T], key: str, value: str) -> AVLTree[T]:
     """Actualiza la entidad identificada por `key` reemplazándola por el nuevo objeto deserializado de `value`.
 
+    Si no existe un dato para la clave proporcionada se debe imprimir el mensaje KEY <key> NOT PRESENT. Ejemplo:
+        KEY Hubble NOT PRESENT
+    Si existe un dato para la clave proporcionada debe actualizarse el dato e imprimir por pantalla el mensaje 
+    UPDATED ENTRY <key> IN TREE. ORIGINAL VALUE: <original value>. UPDATED VALUE: <updated value>. Ejemplo:
+        UPDATED ENTRY Hubble IN TREE. ORIGINAL VALUE: {"name": "Hubble", "agency": "NASA/ESA", "orbit_type": "LEO",
+        "launch_year": 1990, "x": 4800.0, "y": -3200.0, "z": 3600.0, "transmitter_power_w": 200.0, "status": "Active",
+        "description": "Pioneering optical and ultraviolet space telescope exploring the deep universe."}. UPDATED
+        VALUE: {"name": "Hubble", "agency": "NASA", "orbit_type": "LEO", "launch_year": 1990, "x": 5800.0,
+        "y": -3200.0, "z": 3600.0, "transmitter_power_w": 200.0, "status": "Active", "description": "Pioneering 
+        optical and ultraviolet space telescope exploring the deep universe."}
+    
     Nota pedagógica de implementación:
         - `key` identifica el nodo actual a actualizar (ej: `"Luke Skywalker"`).
         - `value` es una cadena en formato JSON que representa la nueva versión de la entidad
@@ -24,12 +31,12 @@ def update(tree: AVLTree[V], key: str, value: str) -> AVLTree[V]:
         UPDATE "Luke Skywalker" '{"nome": "Luke Skywalker", "arma_principal": "Sable verde", ...}'
 
     Args:
-        tree (AVLTree[V]): Árbol actual en memoria.
+        tree (AVLTree[T]): Árbol actual en memoria.
         key (str): Clave o identificador del nodo a buscar y actualizar.
         value (str): Cadena en formato JSON con la nueva información de la entidad.
 
     Returns:
-        AVLTree[V]: La referencia a la raíz del árbol tras la actualización.
+        AVLTree[T]: La referencia a la raíz del árbol tras la actualización.
 
     Raises:
         KeyError: Si no existe ningún nodo con la clave `key` en el árbol.
@@ -40,4 +47,4 @@ def update(tree: AVLTree[V], key: str, value: str) -> AVLTree[V]:
     # 2. Localizar el nodo con clave 'key'
     # 3. Actualizar el contenido garantizando que se preserve la invariante AVL
     # 4. Retornar la raíz del árbol
-    ...
+    

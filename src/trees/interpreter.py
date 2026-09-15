@@ -24,16 +24,20 @@ from __future__ import annotations
 # Módulos estándar de Python:
 # argparse: Permite construir interfaces de línea de comandos robustas con validación de argumentos y flags de ayuda (-h/--help).
 import argparse
-# Path: Representa rutas del sistema de archivos de forma orientada a objetos e independiente del SO (Windows/Linux/macOS).
-from pathlib import Path
+
 # shlex: Tokenizador léxico estilo shell POSIX, esencial para separar palabras pero conservando cadenas entre comillas como un solo token.
 import shlex
+
 # sys: Proporciona acceso a variables y funciones del sistema, como sys.stderr (canal de errores) y sys.exit (código de salida del proceso).
 import sys
 
+# Path: Representa rutas del sistema de archivos de forma orientada a objetos e independiente del SO (Windows/Linux/macOS).
+from pathlib import Path
+
 # Paquetes propios del proyecto:
 # commands: Paquete que contiene las funciones ejecutables asociadas a cada comando disponible.
-import src.trees.commands as commands
+import commands
+
 # AVLTree: Clase que representa la estructura de datos árbol sobre la cual operan los comandos.
 from trees import AVLTree
 
@@ -85,7 +89,7 @@ def main() -> None:
                 # Inspección de comandos válidos:
                 # Obtiene la lista de nombres de comandos registrados en el módulo commands (excluyendo atributos internos que inician con '_')
                 available_cmds = [
-                    cmd.upper() for cmd in vars(commands).keys() if not cmd.startswith("_")
+                    cmd.upper() for cmd in vars(commands) if not cmd.startswith("_")
                 ]
 
                 try:

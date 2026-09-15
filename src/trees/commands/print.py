@@ -2,15 +2,14 @@
 
 from __future__ import annotations
 
-import typing
-
 from trees import AVLTree
 
-T = typing.TypeVar("T")
 
-
-def print(tree: AVLTree[T]) -> AVLTree[T]:
+def print[T](tree: AVLTree[T]) -> AVLTree[T]:
     """Imprime por consola la representación del árbol actual.
+
+    Debe imprimir un mensaje con el patron TREE CONTENT: AVLTree(value = ..., left = ..., right = ...). Ejemplo:
+        TREE CONTENT: AVLTree(value = 2, left = AVLTree(value = 1, left = None, right = None) right = AVLTree(value = 3, left = None, right = None))
 
     Importante: Retorna el árbol intacto para preservar el estado en el intérprete.
 
@@ -24,4 +23,3 @@ def print(tree: AVLTree[T]) -> AVLTree[T]:
         AVLTree[T]: La misma referencia al árbol recibida.
     """
     # TODO: [Práctica Alumno]
-    ...
