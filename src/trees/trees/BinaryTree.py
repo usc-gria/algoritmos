@@ -272,3 +272,6 @@ class BinaryTree[T]:
         right = f"{self.right}" if self.right is not None else None
 
         return f"{self.__class__.__name__}(value = {node}, left = {left}, right = {right})"
+
+    def __iter__(self: typing.Self) -> typing.Iterator[T]:
+        return iter(self.travel(TreeTravelOrder.IN_ORDER))
