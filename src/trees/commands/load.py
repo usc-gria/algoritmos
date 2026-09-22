@@ -4,10 +4,10 @@ from __future__ import annotations
 
 from pathlib import Path
 
-from trees import AVLTree
+from ..trees import AVLTree, Comparable
 
 
-def load[T](tree: AVLTree[T] | None, filepath: str | Path) -> AVLTree[T]:
+def load[T: Comparable](tree: AVLTree[T] | None, filepath: str | Path) -> AVLTree[T]:
     """Carga los datos contenidos en un archivo JSON en el árbol AVL.
 
     Comportamiento:
@@ -46,3 +46,4 @@ def load[T](tree: AVLTree[T] | None, filepath: str | Path) -> AVLTree[T]:
     # 2. Si tree es None, crear el AVLTree con la primera instancia e insertar las demás
     # 3. Si tree ya existe, insertar secuencialmente cada una de las instancias en tree
     # 4. Retornar la raíz del árbol resultante
+    ...

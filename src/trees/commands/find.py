@@ -2,10 +2,10 @@
 
 from __future__ import annotations
 
-from trees import AVLTree
+from ..trees import AVLTree, Comparable
 
 
-def find[T](tree: AVLTree[T], key: str) -> AVLTree[T]:
+def find[T: Comparable](tree: AVLTree[T], key: str) -> AVLTree[T]:
     """Busca un valor o entidad en el árbol AVL e imprime el resultado por consola.
 
     Si se encuentra un dato para la clave indicada debe imprimir el mensaje FOUND VALUE <value>
@@ -39,3 +39,4 @@ def find[T](tree: AVLTree[T], key: str) -> AVLTree[T]:
     # 1. Localizar el nodo objetivo: result = tree.find(...)
     # 2. Imprimir en consola la información del nodo encontrado o mensaje de no hallado
     # 3. Retornar 'tree' intacto
+    ...

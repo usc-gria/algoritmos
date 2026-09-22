@@ -39,7 +39,7 @@ from pathlib import Path
 import commands
 
 # AVLTree: Clase que representa la estructura de datos árbol sobre la cual operan los comandos.
-from trees import AVLTree
+from .trees import AVLTree, Node
 
 
 def main() -> None:
@@ -64,7 +64,7 @@ def main() -> None:
     # 2. Inicialización del estado del árbol
     # Variable que mantendrá la referencia al árbol en memoria a lo largo de toda la ejecución del script.
     # Inicialmente es None hasta que una instrucción (como CREATE) lo instancie.
-    tree: AVLTree | None = None
+    tree: AVLTree[Node] | None = None
 
     # 3. Apertura y lectura segura del archivo de comandos
     try:
@@ -73,7 +73,7 @@ def main() -> None:
             # enumerate(f, start=1) itera línea a línea proporcionando el número de línea (base 1) para diagnósticos de error
             for line_number, line in enumerate(f, start=1):
                 # Elimina espacios en blanco iniciales y finales, así como saltos de línea (\r, \n)
-                clean_line = line.strip()
+                clean_line: str = line.strip()
 
                 # Si la línea está vacía o es un comentario (inicia con '#'), se descarta y se pasa a la siguiente
                 if not clean_line or clean_line.startswith("#"):
@@ -81,14 +81,14 @@ def main() -> None:
 
                 # Tokenización léxica: divide la línea en palabras, respetando frases entre comillas como un único argumento.
                 # Ejemplo: 'PRINT "Hello, World!"' -> ['PRINT', 'Hello, World!']
-                tokens = shlex.split(clean_line)
+                tokens: list[str] = shlex.split(clean_line)
 
                 # Desempaquetado: el primer elemento es el nombre del comando y el resto son sus argumentos
                 command, arguments = tokens[0], tokens[1:]
 
                 # Inspección de comandos válidos:
                 # Obtiene la lista de nombres de comandos registrados en el módulo commands (excluyendo atributos internos que inician con '_')
-                available_cmds = [
+                available_cmds: list[str] = [
                     cmd.upper() for cmd in vars(commands) if not cmd.startswith("_")
                 ]
 
@@ -103,7 +103,7 @@ def main() -> None:
 
                 except AttributeError:
                     # Se produce si la función con el nombre del comando no existe en el paquete commands
-                    cmds_str = ", ".join(f"'{cmd}'" for cmd in available_cmds)
+                    cmds_str: str = ", ".join(f"'{cmd}'" for cmd in available_cmds)
                     print(
                         f"[Línea {line_number}] Error: Comando '{command}' no reconocido. "
                         f"Comandos disponibles: {cmds_str}",

@@ -8,6 +8,10 @@ authors = [
 requires-python = ">=3.14"
 dependencies = []
 
+[dependency-groups]
+dev = [
+    "pyright>=1.1.414",
+]
 
 [build-system]
 requires = ["uv_build>=0.12.9,<0.13.0"]
@@ -15,3 +19,8 @@ build-backend = "uv_build"
 
 [tool.uv]
 package = false
+
+[tool.pyright]
+include = ["src"]
+typeCheckingMode = "basic"
+pythonVersion = "3.14"

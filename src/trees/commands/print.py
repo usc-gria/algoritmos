@@ -2,10 +2,10 @@
 
 from __future__ import annotations
 
-from trees import AVLTree
+from ..trees import AVLTree, Comparable
 
 
-def print[T](tree: AVLTree[T]) -> AVLTree[T]:
+def print[T: Comparable](tree: AVLTree[T]) -> AVLTree[T]:
     """Imprime por consola la representación del árbol actual.
 
     Debe imprimir un mensaje con el patron TREE CONTENT: AVLTree(value = ..., left = ..., right = ...). Ejemplo:
@@ -23,3 +23,4 @@ def print[T](tree: AVLTree[T]) -> AVLTree[T]:
         AVLTree[T]: La misma referencia al árbol recibida.
     """
     # TODO: [Práctica Alumno]
+    ...

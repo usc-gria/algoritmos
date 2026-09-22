@@ -10,9 +10,11 @@ import math
 import typing
 from dataclasses import dataclass, field
 
+from . import Comparable
+
 
 @dataclass(frozen=True, order=True)
-class Node:
+class Node(Comparable):
     """Entidad inmutable que representa un satélite, estación o sonda espacial.
 
     Attributes:

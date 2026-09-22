@@ -2,10 +2,10 @@
 
 from __future__ import annotations
 
-from trees import AVLTree
+from ..trees import AVLTree, Comparable
 
 
-def update[T](tree: AVLTree[T], key: str, value: str) -> AVLTree[T]:
+def update[T: Comparable](tree: AVLTree[T], key: str, value: str) -> AVLTree[T]:
     """Actualiza la entidad identificada por `key` reemplazándola por el nuevo objeto deserializado de `value`.
 
     Si no existe un dato para la clave proporcionada se debe imprimir el mensaje KEY <key> NOT PRESENT. Ejemplo:
@@ -47,4 +47,5 @@ def update[T](tree: AVLTree[T], key: str, value: str) -> AVLTree[T]:
     # 2. Localizar el nodo con clave 'key'
     # 3. Actualizar el contenido garantizando que se preserve la invariante AVL
     # 4. Retornar la raíz del árbol
+    ...
     

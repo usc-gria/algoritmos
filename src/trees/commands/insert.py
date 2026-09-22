@@ -2,10 +2,10 @@
 
 from __future__ import annotations
 
-from trees import AVLTree
+from ..trees import AVLTree, Comparable
 
 
-def insert[T](tree: AVLTree[T], value: str) -> AVLTree[T]:
+def insert[T: Comparable](tree: AVLTree[T], value: str) -> AVLTree[T]:
     """Inserta una nueva entidad en el árbol AVL manteniendo la propiedad de balanceo.
 
     Nota pedagógica de implementación:
@@ -43,3 +43,4 @@ def insert[T](tree: AVLTree[T], value: str) -> AVLTree[T]:
     # 1. Parsear el string JSON 'value' a un objeto del modelo (ej: obj = utils.parse_json_to_character(value))
     # 2. Insertar el objeto en el árbol: tree = tree.insert(obj)
     # 3. Retornar la nueva raíz
+    ...

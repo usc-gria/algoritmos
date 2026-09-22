@@ -8,10 +8,11 @@ from __future__ import annotations
 
 import typing
 
+from . import Comparable
 from .BinaryTree import BinaryTree
 
 
-class BinarySearchTree[T](BinaryTree[T]):
+class BinarySearchTree[T: Comparable](BinaryTree[T]):
     """Árbol Binario de Búsqueda (Binary Search Tree - BST).
 
     Especialización de `BinaryTree` donde los elementos se organizan según la
@@ -21,7 +22,7 @@ class BinarySearchTree[T](BinaryTree[T]):
         - En esta implementación no se admiten elementos con claves duplicadas.
 
     Parameters:
-        value (T | None): Valor del nodo.
+        value (T): Valor del nodo.
         left (BinarySearchTree[T] | None, optional): Subárbol izquierdo. Por defecto None.
         right (BinarySearchTree[T] | None, optional): Subárbol derecho. Por defecto None.
         parent (BinarySearchTree[T] | None, optional): Nodo padre. Por defecto None.
@@ -29,15 +30,15 @@ class BinarySearchTree[T](BinaryTree[T]):
 
     def __init__(
         self: typing.Self,
-        value: T | None,
-        left: BinarySearchTree[T] | None = None,
-        right: BinarySearchTree[T] | None = None,
-        parent: BinarySearchTree[T] | None = None,
+        value: T,
+        left: typing.Self | None = None,
+        right: typing.Self | None = None,
+        parent: typing.Self | None = None,
     ) -> None:
         """Inicializa un nodo del árbol binario de búsqueda."""
         super().__init__(value, left, right, parent)
 
-    def contains(self: typing.Self, value: T) -> bool:
+    def __contains__(self: typing.Self, value: T) -> bool:
         """Determina si un determinado valor existe dentro del subárbol.
 
         Aprovecha la propiedad de búsqueda binaria para descartar la mitad del árbol
@@ -58,13 +59,13 @@ class BinarySearchTree[T](BinaryTree[T]):
         if self.value == value:
             return True
         elif value < self.value and self.left is not None:
-            return self.left.contains(value)
+            return self.left.__contains__(value)
         elif value > self.value and self.right is not None:
-            return self.right.contains(value)
+            return self.right.__contains__(value)
         else:
             return False
 
-    def find(self: typing.Self, value: T) -> BinarySearchTree[T] | None:
+    def find(self: typing.Self, value: T) -> typing.Self | None:
         """Localiza y retorna la referencia al nodo que contiene el valor especificado.
 
         Args:
@@ -84,7 +85,7 @@ class BinarySearchTree[T](BinaryTree[T]):
             return self.right.find(value)
         return None
 
-    def insert(self: typing.Self, value: T) -> BinarySearchTree[T]:
+    def insert(self: typing.Self, value: T) -> typing.Self:
         """Inserta un nuevo valor en la posición que preserva la propiedad de búsqueda binaria.
 
         Si el valor ya está presente, la operación no realiza ninguna modificación
@@ -94,12 +95,12 @@ class BinarySearchTree[T](BinaryTree[T]):
             value (T): Valor a insertar en el árbol.
 
         Returns:
-            BinarySearchTree[T]: La raíz absoluta del árbol tras la inserción.
+            typing.Self: La raíz absoluta del árbol tras la inserción.
 
         Complejidad temporal: O(h), recorre una única rama hasta encontrar el punto de inserción.
         Complejidad espacial: O(h) por la recursión.
         """
-        if not self.contains(value):
+        if value not in self:
             if value < self.value:
                 if self.left is None:
                     self.left = self.__class__(value=value, parent=self)
@@ -114,7 +115,7 @@ class BinarySearchTree[T](BinaryTree[T]):
         # Retorna la raíz absoluta del árbol
         return self.root
 
-    def remove(self: typing.Self, value: T) -> BinarySearchTree[T] | None:
+    def remove(self: typing.Self, value: T) -> typing.Self | None:
         """Elimina el nodo que contiene el valor dado conservando la invariante del ABB.
 
         El algoritmo contempla tres casos estructurales:
@@ -134,7 +135,7 @@ class BinarySearchTree[T](BinaryTree[T]):
         Complejidad temporal: O(h), donde h es la altura del árbol.
         Complejidad espacial: O(h) para la búsqueda y localización del sucesor.
         """
-        if not self.contains(value):
+        if value not in self:
             return self.root
 
         target = self.find(value)
@@ -186,7 +187,7 @@ class BinarySearchTree[T](BinaryTree[T]):
         # Caso 3: El nodo tiene dos hijos
         # Localizamos el sucesor inorden (nodo con valor mínimo del subárbol derecho)
         else:
-            replacement = target.right
+            replacement = typing.cast(typing.Self, target.right)
             while replacement.left is not None:
                 replacement = replacement.left
 
@@ -195,7 +196,7 @@ class BinarySearchTree[T](BinaryTree[T]):
 
             # Eliminamos recursivamente el nodo sucesor (que ahora está duplicado)
             # Nótese que replacement a lo sumo tiene hijo derecho
-            replacement_parent = replacement.parent
+            replacement_parent = typing.cast(typing.Self, replacement.parent)
             replacement_child = replacement.right
 
             if replacement == replacement_parent.left:

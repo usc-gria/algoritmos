@@ -14,10 +14,11 @@ from __future__ import annotations
 
 import typing
 
+from . import Comparable
 from .BinarySearchTree import BinarySearchTree
 
 
-class AVLTree[T](BinarySearchTree[T]):
+class AVLTree[T: Comparable](BinarySearchTree[T]):
     """Árbol Binario de Búsqueda Auto-balanceado (Árbol AVL).
 
     Invariante AVL:
@@ -31,7 +32,7 @@ class AVLTree[T](BinarySearchTree[T]):
         - FE < -1: Nodo desbalanceado con sobrecarga en el subárbol izquierdo.
 
     Parameters:
-        value (T | None): Valor almacenado.
+        value (T): Valor almacenado.
         left (AVLTree[T] | None, optional): Subárbol izquierdo.
         right (AVLTree[T] | None, optional): Subárbol derecho.
         parent (AVLTree[T] | None, optional): Nodo padre.
@@ -39,10 +40,10 @@ class AVLTree[T](BinarySearchTree[T]):
 
     def __init__(
         self: typing.Self,
-        value: T | None,
-        left: AVLTree[T] | None = None,
-        right: AVLTree[T] | None = None,
-        parent: AVLTree[T] | None = None,
+        value: T,
+        left: typing.Self | None = None,
+        right: typing.Self | None = None,
+        parent: typing.Self | None = None,
     ) -> None:
         """Inicializa un nodo del árbol AVL."""
         super().__init__(value, left, right, parent)
@@ -63,8 +64,9 @@ class AVLTree[T](BinarySearchTree[T]):
         # TODO: [Práctica Alumno]
         # Calcular la altura del hijo derecho y del hijo izquierdo
         # y retornar: altura_derecha - altura_izquierda.
+        ...
 
-    def insert(self: typing.Self, value: T) -> AVLTree[T]:
+    def insert(self: typing.Self, value: T) -> typing.Self:
         """Inserta un nuevo valor en el árbol AVL y reestablece el balance si es necesario.
 
         Pasos del algoritmo:
@@ -88,8 +90,9 @@ class AVLTree[T](BinarySearchTree[T]):
         Complejidad temporal: O(log n) garantizado.
         """
         # TODO: [Práctica Alumno]
+        ...
 
-    def remove(self: typing.Self, value: T) -> AVLTree[T] | None:
+    def remove(self: typing.Self, value: T) -> typing.Self | None:
         """Elimina un valor del árbol AVL y rebalancea los nodos afectados.
 
         Pasos del algoritmo:
@@ -113,8 +116,9 @@ class AVLTree[T](BinarySearchTree[T]):
         # TODO: [Práctica Alumno]
         # Guardar la referencia al punto de inicio del rebalanceo antes del borrado
         # Rebalancear desde el padre del nodo eliminado hasta la raíz
+        ...
 
-    def __rotate_right(self: typing.Self) -> AVLTree[T]:
+    def __rotate_right(self: typing.Self) -> typing.Self:
         """Realiza una rotación simple a la derecha (Caso Izquierda-Izquierda / LL).
 
         Se aplica cuando un nodo `self` está sobrecargado a la izquierda (FE <= -2)
@@ -152,7 +156,7 @@ class AVLTree[T](BinarySearchTree[T]):
 
         return new_root
 
-    def __rotate_left(self: typing.Self) -> AVLTree[T]:
+    def __rotate_left(self: typing.Self) -> typing.Self :
         """Realiza una rotación simple a la izquierda (Caso Derecha-Derecha / RR).
 
         Se aplica cuando un nodo `self` está sobrecargado a la derecha (FE >= 2)
@@ -170,8 +174,9 @@ class AVLTree[T](BinarySearchTree[T]):
         """
         # TODO: [Práctica Alumno]
         # Implementar la rotación simétrica a rotate_right
+        ...
 
-    def rotate_left_right(self: typing.Self) -> AVLTree[T]:
+    def __rotate_left_right(self: typing.Self) -> typing.Self:
         """Realiza una rotación doble Izquierda-Derecha (Caso LR).
 
         Se aplica cuando un nodo está desbalanceado a la izquierda (FE <= -2)
@@ -185,8 +190,9 @@ class AVLTree[T](BinarySearchTree[T]):
             AVLTree[T]: La nueva raíz local del subárbol tras la rotación doble.
         """
         # TODO: [Práctica Alumno]
+        ...
 
-    def rotate_right_left(self: typing.Self) -> AVLTree[T]:
+    def __rotate_right_left(self: typing.Self) -> typing.Self:
         """Realiza una rotación doble Derecha-Izquierda (Caso RL).
 
         Se aplica cuando un nodo está desbalanceado a la derecha (FE >= 2)
@@ -200,4 +206,5 @@ class AVLTree[T](BinarySearchTree[T]):
             AVLTree[T]: La nueva raíz local del subárbol tras la rotación doble.
         """
         # TODO: [Práctica Alumno]
+        ...
         

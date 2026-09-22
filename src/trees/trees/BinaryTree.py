@@ -59,9 +59,9 @@ class BinaryTree[T]:
     def __init__(
         self: typing.Self,
         value: T,
-        left: BinaryTree[T] | None = None,
-        right: BinaryTree[T] | None = None,
-        parent: BinaryTree[T] | None = None,
+        left: typing.Self | None = None,
+        right: typing.Self | None = None,
+        parent: typing.Self | None = None,
     ) -> None:
         """Inicializa un nodo del árbol binario con enlaces a sus hijos y padre opcionales.
 
@@ -69,9 +69,9 @@ class BinaryTree[T]:
         Complejidad espacial: O(1).
         """
         self.__value: T = value
-        self.__parent: BinaryTree[T] | None = parent
-        self.__left: BinaryTree[T] | None = None
-        self.__right: BinaryTree[T] | None = None
+        self.__parent: typing.Self | None = parent
+        self.__left: typing.Self | None = None
+        self.__right: typing.Self | None = None
 
         # Asignamos mediante los setters para asegurar que se enlace el puntero parent en los hijos
         self.left = left
@@ -100,7 +100,7 @@ class BinaryTree[T]:
         return self.parent is None
 
     @property
-    def root(self: typing.Self) -> BinaryTree[T]:
+    def root(self: typing.Self) -> typing.Self:
         """Obtiene la raíz absoluta del árbol ascendiendo mediante los enlaces de parentesco.
 
         Returns:
@@ -109,7 +109,7 @@ class BinaryTree[T]:
         Complejidad temporal: O(h), donde h es la profundidad del nodo en el árbol.
         Complejidad espacial: O(h) por la pila de recursión (o O(1) si es iterativo).
         """
-        return self if self.is_root else self.parent.root
+        return self if self.is_root else typing.cast(typing.Self, self.parent).root
 
     @property
     def weight(self: typing.Self) -> int:
@@ -162,34 +162,34 @@ class BinaryTree[T]:
         return 1 + left_size + right_size
 
     @property
-    def parent(self: typing.Self) -> BinaryTree[T] | None:
+    def parent(self: typing.Self) -> typing.Self | None:
         """Referencia al nodo padre inmediato en el árbol, o None si es raíz."""
         return self.__parent
 
     @parent.setter
-    def parent(self: typing.Self, parent: BinaryTree[T] | None) -> None:
+    def parent(self: typing.Self, parent: typing.Self | None) -> None:
         """Actualiza el enlace al nodo padre."""
         self.__parent = parent
 
     @property
-    def left(self: typing.Self) -> BinaryTree[T] | None:
+    def left(self: typing.Self) -> typing.Self | None:
         """Referencia al subárbol / hijo izquierdo, o None si no existe."""
         return self.__left
 
     @left.setter
-    def left(self: typing.Self, node: BinaryTree[T] | None) -> None:
+    def left(self: typing.Self, node: typing.Self | None) -> None:
         """Establece el hijo izquierdo, actualizando automáticamente el puntero `parent` del hijo."""
         self.__left = node
         if node is not None:
             node.parent = self
 
     @property
-    def right(self: typing.Self) -> BinaryTree[T] | None:
+    def right(self: typing.Self) -> typing.Self | None:
         """Referencia al subárbol / hijo derecho, o None si no existe."""
         return self.__right
 
     @right.setter
-    def right(self: typing.Self, node: BinaryTree[T] | None) -> None:
+    def right(self: typing.Self, node: typing.Self | None) -> None:
         """Establece el hijo derecho, actualizando automáticamente el puntero `parent` del hijo."""
         self.__right = node
         if node is not None:
@@ -205,7 +205,7 @@ class BinaryTree[T]:
         """Modifica el valor almacenado en el nodo."""
         self.__value = value
 
-    def insert(self: typing.Self, value: T, position: Child) -> BinaryTree[T]:
+    def insert(self: typing.Self, value: T, position: Child) -> typing.Self:
         """Inserta un nuevo nodo como hijo directo del nodo actual en la posición indicada.
 
         Al tratarse de un árbol binario no ordenado genérico, la inserción se realiza de forma
@@ -216,7 +216,7 @@ class BinaryTree[T]:
             position (Child): Posición relativa deseada (`Child.LEFT` o `Child.RIGHT`).
 
         Returns:
-            BinaryTree[T]: La raíz absoluta del árbol tras efectuar la inserción.
+            typing.Self: La raíz absoluta del árbol tras efectuar la inserción.
 
         Raises:
             RuntimeError: Si la posición seleccionada ya está ocupada por otro hijo.
@@ -225,9 +225,9 @@ class BinaryTree[T]:
         Complejidad espacial: O(1) de memoria auxiliar.
         """
         if position == Child.LEFT and self.left is None:
-            self.left = BinaryTree(value, parent=self)
+            self.left = self.__class__(value, parent=self)
         elif position == Child.RIGHT and self.right is None:
-            self.right = BinaryTree(value, parent=self)
+            self.right = self.__class__(value, parent=self)
         else:
             raise RuntimeError(f"Trying to insert in {position}, but position is already occupied")
 
@@ -236,7 +236,7 @@ class BinaryTree[T]:
     def travel(
         self: typing.Self,
         order: TreeTravelOrder = TreeTravelOrder.IN_ORDER,
-    ) -> typing.List[T]:
+    ) -> list[T]:
         """Realiza un recorrido en profundidad (DFS) del subárbol según el orden solicitado.
 
         Variantes de recorrido disponibles:
@@ -248,7 +248,7 @@ class BinaryTree[T]:
             order (TreeTravelOrder): Estrategia de recorrido a emplear. Por defecto IN_ORDER.
 
         Returns:
-            typing.List[T]: Lista con los valores de los nodos en el orden visitado.
+            list[T]: Lista con los valores de los nodos en el orden visitado.
 
         Complejidad temporal: O(n), visita exactamente una vez cada nodo.
         Complejidad espacial: O(n) para construir la lista resultante + O(h) de pila recursiva.

@@ -5,7 +5,7 @@ from __future__ import annotations
 import json
 from pathlib import Path
 
-from trees import Node
+from .trees import Node
 
 
 def parse_json_to_node(data: str) -> Node:
