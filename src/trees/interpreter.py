@@ -36,7 +36,7 @@ from pathlib import Path
 
 # Paquetes propios del proyecto:
 # commands: Paquete que contiene las funciones ejecutables asociadas a cada comando disponible.
-import commands
+from . import commands
 
 # AVLTree: Clase que representa la estructura de datos árbol sobre la cual operan los comandos.
 from .trees import AVLTree, Node
