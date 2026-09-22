@@ -1,4 +1,3 @@
-CREATE '{"name": "ISS", "agency": "International", "orbit_type": "LEO", "launch_year": 1998, "x": 4200.0, "y": 3800.0, "z": 3400.0, "transmitter_power_w": 2500.0, "status": "Active", "description": "International Space Station"}'
 LOAD data.json
 FIND "Hubble"
 PRINT
