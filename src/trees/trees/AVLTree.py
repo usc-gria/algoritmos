@@ -86,7 +86,7 @@ class AVLTree[T: Comparable](BinarySearchTree[T]):
 
         Complejidad temporal: O(log n) garantizado.
         """
-        return super().insert(value)  # TODO: [Práctica Alumno] Implementar el rebalanceo tras la inserción
+        ...
 
     def remove(self: typing.Self, value: T) -> typing.Self | None:
         """Elimina un valor del árbol AVL y rebalancea los nodos afectados.
@@ -109,12 +109,9 @@ class AVLTree[T: Comparable](BinarySearchTree[T]):
 
         Complejidad temporal: O(log n) garantizado.
         """
-        # TODO: [Práctica Alumno]
-        # Guardar la referencia al punto de inicio del rebalanceo antes del borrado
-        # Rebalancear desde el padre del nodo eliminado hasta la raíz
         ...
-
-    def rotate_right(self: typing.Self) -> typing.Self:
+        
+    def __rotate_right(self: typing.Self) -> typing.Self:
         """Realiza una rotación simple a la derecha (Caso Izquierda-Izquierda / LL).
 
         Se aplica cuando un nodo `self` está sobrecargado a la izquierda (FE <= -2)
@@ -144,12 +141,15 @@ class AVLTree[T: Comparable](BinarySearchTree[T]):
 
         # 3. Enlazar new_root con el padre original del subárbol
         new_root.parent = parent
-        if parent is not None:
-            parent.left = new_root
+        if parent is not None and parent.value is not None and new_root.value is not None:
+            if new_root.value < parent.value:
+                parent.left = new_root
+            else:
+                parent.right = new_root
 
         return new_root
 
-    def rotate_left(self: typing.Self) -> typing.Self :
+    def __rotate_left(self: typing.Self) -> typing.Self :
         """Realiza una rotación simple a la izquierda (Caso Derecha-Derecha / RR).
 
         Se aplica cuando un nodo `self` está sobrecargado a la derecha (FE >= 2)
@@ -165,24 +165,7 @@ class AVLTree[T: Comparable](BinarySearchTree[T]):
         Returns:
             AVLTree[T]: La nueva raíz local del subárbol rotado (`new_root`).
         """
-        parent = self.parent
-        new_root = self.right
-
-        if new_root is None:
-            raise RuntimeError("No se puede rotar a la izquierda sin un subárbol derecho")
-
-        # 1. El subárbol izquierdo de new_root (T2) pasa a ser el hijo derecho de self
-        self.right = new_root.left
-
-        # 2. self pasa a ser el hijo derecho de new_root
-        new_root.left = self
-
-        # 3. Enlazar new_root con el padre original del subárbol
-        new_root.parent = parent
-        if parent is not None:
-            parent.right = new_root
-
-        return new_root
+        ...
 
     def __rotate_left_right(self: typing.Self) -> typing.Self:
         """Realiza una rotación doble Izquierda-Derecha (Caso LR).
@@ -197,7 +180,6 @@ class AVLTree[T: Comparable](BinarySearchTree[T]):
         Returns:
             AVLTree[T]: La nueva raíz local del subárbol tras la rotación doble.
         """
-        # TODO: [Práctica Alumno]
         ...
 
     def __rotate_right_left(self: typing.Self) -> typing.Self:
@@ -213,5 +195,4 @@ class AVLTree[T: Comparable](BinarySearchTree[T]):
         Returns:
             AVLTree[T]: La nueva raíz local del subárbol tras la rotación doble.
         """
-        # TODO: [Práctica Alumno]
         ...
