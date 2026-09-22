@@ -59,9 +59,9 @@ class BinarySearchTree[T: Comparable](BinaryTree[T]):
         if self.value == value:
             return True
         elif value < self.value and self.left is not None:
-            return self.left.__contains__(value)
+            return value in self.left
         elif value > self.value and self.right is not None:
-            return self.right.__contains__(value)
+            return value in self.right
         else:
             return False
 
@@ -153,7 +153,6 @@ class BinarySearchTree[T: Comparable](BinaryTree[T]):
                 parent.left = None
             else:
                 parent.right = None
-            target.parent = None
             return self.root
 
         # Caso 2a: El nodo tiene únicamente hijo izquierdo
@@ -166,9 +165,8 @@ class BinarySearchTree[T: Comparable](BinaryTree[T]):
                 parent.left = child
             else:
                 parent.right = child
-            target.parent = None
-            target.left = None
-            return self.root
+
+            return child.root
 
         # Caso 2b: El nodo tiene únicamente hijo derecho
         elif target.left is None and target.right is not None:
@@ -180,9 +178,8 @@ class BinarySearchTree[T: Comparable](BinaryTree[T]):
                 parent.left = child
             else:
                 parent.right = child
-            target.parent = None
-            target.right = None
-            return self.root
+
+            return child.root
 
         # Caso 3: El nodo tiene dos hijos
         # Localizamos el sucesor inorden (nodo con valor mínimo del subárbol derecho)
@@ -203,8 +200,5 @@ class BinarySearchTree[T: Comparable](BinaryTree[T]):
                 replacement_parent.left = replacement_child
             else:
                 replacement_parent.right = replacement_child
-
-            replacement.parent = None
-            replacement.right = None
 
             return self.root

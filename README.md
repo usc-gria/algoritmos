@@ -58,3 +58,13 @@ Comandos disponibles:
 - `REMOVE <valor>`
 - `FIND <clave>`
 - `UPDATE <clave> <valor>`
+
+## Lanzar el debugger
+
+1. Abre la vista **Run and Debug** de VS Code (`Ctrl+Shift+D`).
+2. Selecciona `Depurar interpreter con TEST.test`.
+3. Pulsa `F5` o el botón de inicio.
+
+Para depurar el programa de prueba, selecciona `Depurar test.py` en lugar de la configuración anterior.
+
+Antes de iniciar la depuración, ejecuta `uv sync` si todavía no has preparado el entorno. Coloca puntos de interrupción haciendo clic a la izquierda del número de línea.
