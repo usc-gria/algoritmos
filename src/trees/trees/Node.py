@@ -31,15 +31,15 @@ class Node(Comparable):
     """
 
     name: str = field(compare=True)
-    agency: str = field(compare=False)
-    orbit_type: str = field(compare=False)
-    launch_year: int = field(compare=False)
-    x: float = field(compare=False)
-    y: float = field(compare=False)
-    z: float = field(compare=False)
-    transmitter_power_w: float = field(compare=False)
-    status: str = field(compare=False)
-    description: str = field(compare=False)
+    agency: str = field(compare=False, default="")
+    orbit_type: str = field(compare=False, default="")
+    launch_year: int = field(compare=False, default=0)
+    x: float = field(compare=False, default=0.0)
+    y: float = field(compare=False, default=0.0)
+    z: float = field(compare=False, default=0.0)
+    transmitter_power_w: float = field(compare=False, default=0.0)
+    status: str = field(compare=False, default="")
+    description: str = field(compare=False, default="")
 
     def distance(self: typing.Self, other: Node) -> float:
         """Calcula la distancia euclidiana en 3D en kilómetros hacia otro satélite.
