@@ -30,16 +30,16 @@ class Node(Comparable):
         description (str): Breve resumen del propósito u objetivos científicos de la misión.
     """
 
-    name: str = field(compare=True)
-    agency: str = field(compare=False, default="")
-    orbit_type: str = field(compare=False, default="")
-    launch_year: int = field(compare=False, default=0)
-    x: float = field(compare=False, default=0.0)
-    y: float = field(compare=False, default=0.0)
-    z: float = field(compare=False, default=0.0)
-    transmitter_power_w: float = field(compare=False, default=0.0)
-    status: str = field(compare=False, default="")
-    description: str = field(compare=False, default="")
+    name: str | None = field(compare=True, default=None)
+    agency: str | None = field(compare=False, default=None)
+    orbit_type: str | None = field(compare=False, default=None)
+    launch_year: int | None = field(compare=False, default=None)
+    x: float | None = field(compare=False, default=None)
+    y: float | None = field(compare=False, default=None)
+    z: float | None = field(compare=False, default=None)
+    transmitter_power_w: float | None = field(compare=False, default=None)
+    status: str | None = field(compare=False, default=None)
+    description: str | None = field(compare=False, default=None)
 
     def distance(self: typing.Self, other: Node) -> float:
         """Calcula la distancia euclidiana en 3D en kilómetros hacia otro satélite.
@@ -50,7 +50,7 @@ class Node(Comparable):
         Returns:
             float: Distancia en kilómetros en el espacio tridimensional.
         """
-        dx = self.x - other.x
-        dy = self.y - other.y
-        dz = self.z - other.z
+        dx = self.x - other.x if self.x is not None and other.x is not None else 0.0
+        dy = self.y - other.y if self.y is not None and other.y is not None else 0.0
+        dz = self.z - other.z if self.z is not None and other.z is not None else 0.0
         return math.sqrt(dx * dx + dy * dy + dz * dz)
