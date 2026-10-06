@@ -72,8 +72,7 @@ class Graph[T, Q]:
     def find_by_name(self, name: str) -> T | None:
         """Busca un vértice no grafo para o cal o atributo 'name' coincida co nome indicado."""
         for vertex in self.__vertices:
-        # Usamos getattr por seguridade se T é un tipo xenérico con atributo 'name'
-            if getattr(vertex, "name", str(vertex)) == name:
+            if vertex == name:
                 return vertex
         return None
 
