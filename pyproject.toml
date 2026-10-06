@@ -4,10 +4,10 @@ version = "0.1.0"
 description = "Práctica de Grafos - Algoritmos"
 readme = "README.md"
 authors = [
-    { name = "Victor Gallego", email = "victorj.gallego@gmail.com" }
+    { name = "Victor Gallego", email = "victorj.gallego@gmail.com" },
     { name = "Carmen Magariños", email = "mariadelcarmen.magarinos@usc.gal" }
 ]
-requires-python = ">=3.14"
+requires-python = ">=3.12"
 dependencies = []
 
 [project.scripts]
