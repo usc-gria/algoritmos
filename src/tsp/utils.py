@@ -1,4 +1,4 @@
-"""Lectura do mesmo JSON de satélites empregado en p1 e p2."""
+"""Lectura dos datos de satélites en formato JSON."""
 from __future__ import annotations
 import json
 import math

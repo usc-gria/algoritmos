@@ -22,9 +22,8 @@ class Solver:
     def dynamic(self, origin: str) -> Result:
         """Mesmo contrato que brute_force, mediante programación dinámica.
 
-        Definir estados por nodo e subconxunto, gardar os custos dos
-        subproblemas e reconstruír a ruta óptima co desempate especificado.
-        As táboas deben ser locais a cada chamada.
+        Resolver o problema mediante programación dinámica e devolver a ruta
+        óptima co desempate especificado. Non se esixe un algoritmo concreto.
         """
-        # TODO: [Práctica Alumno] Implementar Held–Karp e reconstruír a ruta.
+        # TODO: [Práctica Alumno] Implementar a solución mediante programación dinámica.
         raise NotImplementedError("Implement Solver.dynamic")
