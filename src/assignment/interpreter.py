@@ -9,12 +9,12 @@ import sys
 if __package__ in (None, ""):
     sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
-from tsp.commands import COMMANDS
-from tsp.models import Solver
+from assignment.commands import COMMANDS
+from assignment.models import Solver
 
 
 def main(solver_type: type[Solver] = Solver) -> None:
-    parser = argparse.ArgumentParser(description="Intérprete de comandos TSP")
+    parser = argparse.ArgumentParser(description="Intérprete de comandos ASSIGN")
     parser.add_argument("file", help="Ficheiro UTF-8 de comandos, ou - para stdin")
     parser.add_argument("--time", action="store_true", help="Tempos en stderr")
     args = parser.parse_args()
@@ -34,7 +34,7 @@ def main(solver_type: type[Solver] = Solver) -> None:
                 arguments[0] = str(input_base / arguments[0])
             if command not in COMMANDS:
                 raise ValueError("Unknown command")
-            if command == "TSP":
+            if command == "ASSIGN":
                 problem = COMMANDS[command](problem, *arguments,
                     solver_type=solver_type, timing=args.time)
             else:

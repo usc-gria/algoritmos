@@ -1,0 +1,5 @@
+LOAD ties.json
+assign trivial "Centro Á" "Centro B"
+ASSIGN PRECISE "Centro B" "Centro Á"
+LOAD line.json 3
+ASSIGN PRECISE C2 C1

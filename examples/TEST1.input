@@ -1,0 +1,4 @@
+# Ambos conxuntos de cotas.
+LOAD line.json
+ASSIGN TRIVIAL C1 C2
+ASSIGN PRECISE C1 C2

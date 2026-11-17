@@ -1,0 +1,3 @@
+PROBLEM LOADED WITH 12 NODES
+ASSIGN TRIVIAL: [["GPS-III-01", "ISS"], ["Galileo-FOC-FM1", "ISS"], ["Hispasat-30W-6", "Hubble"], ["Meteosat-11", "James Webb"], ["Perseverance-Orbiter-Relay", "James Webb"], ["Sentinel-2A", "Hubble"], ["Starlink-1007", "ISS"], ["Tiangong", "Hubble"], ["Voyager 1", "James Webb"]] WITH COST 24135081299
+ASSIGN PRECISE: [["GPS-III-01", "ISS"], ["Galileo-FOC-FM1", "ISS"], ["Hispasat-30W-6", "Hubble"], ["Meteosat-11", "James Webb"], ["Perseverance-Orbiter-Relay", "James Webb"], ["Sentinel-2A", "Hubble"], ["Starlink-1007", "ISS"], ["Tiangong", "Hubble"], ["Voyager 1", "James Webb"]] WITH COST 24135081299

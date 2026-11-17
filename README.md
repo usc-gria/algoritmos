@@ -1,6 +1,6 @@
-# GrIA — Algoritmos — Práctica 3
+# GrIA — Algoritmos — Práctica 4
 
-Programación dinámica e TSP sobre ConstellationNet. Véxase [description.html](description.html) para o enunciado completo.
+Ramificación e poda: asignación de satélites a centros con capacidade limitada. O enunciado completo está en [description.html](description.html).
 
 ## Execución
 
@@ -8,11 +8,11 @@ Desde esta carpeta, con Python ≥ 3.12 e uv:
 
 ```bash
 uv sync --locked
-uv run tsp examples/TEST1.input
-uv run tsp --time examples/TEST1.input > actual.output 2> tempos.txt
+uv run assignment examples/TEST1.input
+uv run assignment --time examples/TEST1.input > actual.output 2> tempos.txt
 ```
 
-Completar os dous TODO de `src/tsp/models/Solver.py`. O intérprete, os comandos e a entrada/saída xa están implementados. O esqueleto falla explicitamente se intenta executar un algoritmo pendente.
+Completar os tres TODO de `src/assignment/models/Solver.py`: cotas inferiores, cotas superiores e busca LC-FIFO. O resto da infraestrutura xa está implementado. O esqueleto falla explicitamente cando se invoca un método pendente.
 
-`data.json` contén os satélites e `Node.py` define o seu modelo. Cada LOAD substitúe o problema; o parámetro opcional limita o número de satélites.
+Proporciónanse os datos JSON, o modelo Node, a matriz de custos e o intérprete. O comando LOAD substitúe o problema; ASSIGN escolle os centros e o conxunto de cotas. As expansións imprímense en stderr e --time engade os tempos; stdout contén a asignación e o custo para a comparación automática.
 

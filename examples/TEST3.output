@@ -1,0 +1,7 @@
+PROBLEM LOADED WITH 6 NODES
+ASSIGN TRIVIAL: [["GPS-III-01", "ISS"], ["Galileo-FOC-FM1", "James Webb"], ["Hubble", "ISS"], ["Sentinel-2A", "James Webb"]] WITH COST 3014985
+ASSIGN PRECISE: [["GPS-III-01", "ISS"], ["Galileo-FOC-FM1", "James Webb"], ["Hubble", "ISS"], ["Sentinel-2A", "James Webb"]] WITH COST 3014985
+ASSIGN PRECISE: [["GPS-III-01", "Hubble"], ["Galileo-FOC-FM1", "Hubble"], ["ISS", "Hubble"], ["James Webb", "Hubble"], ["Sentinel-2A", "Hubble"]] WITH COST 1566457
+PROBLEM LOADED WITH 3 NODES
+ASSIGN TRIVIAL: [["Hubble", "ISS"], ["James Webb", "ISS"]] WITH COST 1503059
+ASSIGN PRECISE: [["Hubble", "ISS"], ["James Webb", "ISS"]] WITH COST 1503059

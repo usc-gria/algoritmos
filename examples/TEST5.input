@@ -1,0 +1,3 @@
+LOAD ../data.json
+ASSIGN TRIVIAL ISS Hubble "James Webb"
+ASSIGN PRECISE ISS Hubble "James Webb"

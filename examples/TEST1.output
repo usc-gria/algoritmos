@@ -1,0 +1,3 @@
+PROBLEM LOADED WITH 5 NODES
+ASSIGN TRIVIAL: [["A", "C1"], ["B", "C1"], ["D", "C2"]] WITH COST 4
+ASSIGN PRECISE: [["A", "C1"], ["B", "C1"], ["D", "C2"]] WITH COST 4
